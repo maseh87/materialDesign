@@ -1,0 +1,17 @@
+{
+  "name": "angularMaterial",
+  "version": "0.0.0",
+  "homepage": "https://github.com/maseh87/materialDesign",
+  "authors": [
+    "Mason <maseh87@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ]
+}
