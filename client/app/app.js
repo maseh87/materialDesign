@@ -16,8 +16,7 @@ angular.module('Material', [
     columns: [
       ['Xianhui', 30, 200, 100, 400, 150, 250],
       ['Josh', 50, 20, 10, 40, 15, 25]
-    ],
-    type: 'line'
+    ]
   };
 })
 .directive('lineChart', function() {
@@ -73,5 +72,13 @@ angular.module('Material', [
       //Generating the chart
       var chart = c3.generate(genData);
     }
+  };
+})
+.controller('OtherController', function($scope) {
+  $scope.data = {
+    columns: [
+      ['Xianhui', 30, 200, 100, 400, 150, 250],
+      ['Josh', 50, 20, 10, 40, 15, 25]
+    ]
   };
 });
