@@ -14,15 +14,28 @@ angular.module('Material', [
 .controller('Controller', function($scope) {
   $scope.data = {
     columns: [
-      ['Xianhui', 30, 200, 100, 400, 150, 250],
-      ['Josh', 50, 20, 10, 40, 15, 25]
-    ]
+      ['Xianhui', 300, 200, 100, 400, 150, 250],
+      ['Josh', 12, 18, 10, 40, 235, 300],
+      ['Mase', 34, 20, 139, 40, 150, 25],
+      ['Andrew', 53, 3, 10, 49, 195, 100],
+      ['Scott', 83, 20, 22, 40, 320, 25],
+      ['Josh P', 128, 35, 10, 86, 123, 150]
+    ],
+    types: {
+      data1: 'area',
+      data2: 'area-spline'
+    }
   };
 })
-.directive('lineChart', function() {
+.directive('chart', function() {
   var chartIdCounter = Math.floor((Math.random()*1000)+1);
+  console.log(chartIdCounter);
   return {
     restrict: 'E',
+    scope: {
+      data: '=',
+      options: '='
+    },
     link: function(scope, element, attrs) {
        //Assigning id to the element
       var chartId;
@@ -37,7 +50,7 @@ angular.module('Material', [
 
       //Preparing chart data and options
       var genData = {
-        bindto: '#' + chartId,
+        bindto: '#' + element.attr('id'),
         data: scope.data
       };
       console.log(genData, ' genData');
@@ -51,10 +64,7 @@ angular.module('Material', [
       onDataChanged = function(data, oldData) {
         if(chart) {
           chart.load(data);
-          console.log(data.columns.length);
-          console.log(oldData.columns.length);
           if(data.columns.length < oldData.columns.length) {
-            console.log('data' + oldData.columns.length);
             chart.unload(['data' + oldData.columns.length]);
           }
         }
@@ -73,12 +83,13 @@ angular.module('Material', [
       var chart = c3.generate(genData);
     }
   };
-})
-.controller('OtherController', function($scope) {
-  $scope.data = {
-    columns: [
-      ['Xianhui', 30, 200, 100, 400, 150, 250],
-      ['Josh', 50, 20, 10, 40, 15, 25]
-    ]
-  };
 });
+
+
+
+
+
+
+
+
+

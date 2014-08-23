@@ -7,22 +7,13 @@
   <link rel="stylesheet" type="text/css" href="client/styles/style.css">
 </head>
 <body ng-app="Material">
-<material-toolbar scroll-shrink class="material-theme-light">
-    </material-toolbar>
-    <material-content>
-      <ig fid="t1" class="material-input-group-theme-light material-input-group-inverted"></ig>
-</material-content>
+<material-toolbar scroll-shrink class="material-theme-light"></material-toolbar>
   <div ng-controller="Controller">
     <material-card>
-      <line-chart></line-chart>
+      <chart data="data" chart="area"></chart>
     </material-card>
   </div>
-  <div ng-controller="OtherController">
 
-  <material-card>
-    <line-chart chart="donut"></line-chart>
-  </material-card>
-  </div>
 
 
 
