@@ -7,10 +7,12 @@
   <link rel="stylesheet" type="text/css" href="client/styles/style.css">
 </head>
 <body ng-app="Material">
-<material-toolbar scroll-shrink class="material-theme-light"></material-toolbar>
+<material-toolbar scroll-shrink class="material-theme-light">
+  <material-input></material-input>
+</material-toolbar>
   <div ng-controller="Controller">
     <material-card>
-      <chart data="data" chart="area"></chart>
+      <chart data="data" axis="axis" chart="line"></chart>
     </material-card>
   </div>
 

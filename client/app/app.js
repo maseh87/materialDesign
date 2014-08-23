@@ -14,16 +14,14 @@ angular.module('Material', [
 .controller('Controller', function($scope) {
   $scope.data = {
     columns: [
-      ['Xianhui', 300, 200, 100, 400, 150, 250],
-      ['Josh', 12, 18, 10, 40, 235, 300],
-      ['Mase', 34, 20, 139, 40, 150, 25],
-      ['Andrew', 53, 3, 10, 49, 195, 100],
-      ['Scott', 83, 20, 22, 40, 320, 25],
-      ['Josh P', 128, 35, 10, 86, 123, 150]
-    ],
-    types: {
-      data1: 'area',
-      data2: 'area-spline'
+      ['Profile Completion', 100, 90, 75, 88, 12, 40],
+      ['Interests Declared', 75, 99, 65, 12, 24, 63]
+    ]
+  };
+   $scope.axis = {
+    x: {
+      type: 'category',
+      categories: ['Josh', 'Mase', 'Xianhui', 'James', 'Joe', 'That One Guy']
     }
   };
 })
@@ -34,9 +32,11 @@ angular.module('Material', [
     restrict: 'E',
     scope: {
       data: '=',
-      options: '='
+      options: '=',
+      axis: '='
     },
     link: function(scope, element, attrs) {
+      console.log(element, ' element');
        //Assigning id to the element
       var chartId;
       if(element.attr('id')) {
@@ -51,7 +51,8 @@ angular.module('Material', [
       //Preparing chart data and options
       var genData = {
         bindto: '#' + element.attr('id'),
-        data: scope.data
+        data: scope.data,
+        axis: scope.axis
       };
       console.log(genData, ' genData');
       genData.data.type = attrs.chart? attrs.chart : scope.data.type? scope.data.type : 'line';
@@ -62,6 +63,7 @@ angular.module('Material', [
       }
       //On data change, reload chart
       onDataChanged = function(data, oldData) {
+        console.log(data, ' data');
         if(chart) {
           chart.load(data);
           if(data.columns.length < oldData.columns.length) {
