@@ -27,7 +27,7 @@ angular.module('Material', [
 })
 .directive('chart', function() {
   var chartIdCounter = Math.floor((Math.random()*1000)+1);
-  console.log(chartIdCounter);
+
   return {
     restrict: 'E',
     scope: {
@@ -36,7 +36,6 @@ angular.module('Material', [
       axis: '='
     },
     link: function(scope, element, attrs) {
-      console.log(element, ' element');
        //Assigning id to the element
       var chartId;
       if(element.attr('id')) {
@@ -52,9 +51,9 @@ angular.module('Material', [
       var genData = {
         bindto: '#' + element.attr('id'),
         data: scope.data,
-        axis: scope.axis
+        axis: scope.axis,
+        options: scope.options
       };
-      console.log(genData, ' genData');
       genData.data.type = attrs.chart? attrs.chart : scope.data.type? scope.data.type : 'line';
       if(scope.options) {
         Object.keys(scope.options).forEach(function(key) {
@@ -63,7 +62,7 @@ angular.module('Material', [
       }
       //On data change, reload chart
       onDataChanged = function(data, oldData) {
-        console.log(data, ' data');
+      console.log(data);
         if(chart) {
           chart.load(data);
           if(data.columns.length < oldData.columns.length) {
@@ -80,7 +79,7 @@ angular.module('Material', [
           chart.load(data);
         }
       };
-      scope.$watch(function() {return attrs.chart; }, onChartChanged);
+      scope.$watch(function() {return attrs.chart; });
       //Generating the chart
       var chart = c3.generate(genData);
     }
