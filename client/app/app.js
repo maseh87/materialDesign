@@ -79,7 +79,9 @@ angular.module('Material', [
           chart.load(data);
         }
       };
-      scope.$watch(function() {return attrs.chart; });
+      scope.$watch(function() {
+        return attrs.chart;
+      });
       //Generating the chart
       var chart = c3.generate(genData);
     }
